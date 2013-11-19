@@ -7,8 +7,10 @@ var searchHorizontally = bsearch("a.x < b.x").compile(),
 	searchVertically   = bsearch("a.y > b.y").compile();
 
 
-function Envelope(){
-	this.cornerPoints = [{x: 0, y: 0}];
+var p0 = {x: 0, y: 0};
+
+function Envelope(envelope){
+	this.cornerPoints = envelope instanceof Envelope ? envelope.cornerPoints.slice(0) : [p0];
 }
 
 Envelope.prototype = {
@@ -37,7 +39,7 @@ Envelope.prototype = {
 		return area;
 	},
 	clone: function(){
-		return this.cornerPoints.slice(0);
+		return new Envelope(this);
 	}
 };
 
