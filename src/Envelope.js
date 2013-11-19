@@ -33,7 +33,7 @@ Envelope.prototype = {
 		var cp = this.cornerPoints, p = cp[0], area = 0;
 		for(var i = 1, n = cp.length; i < n; ++i){
 			var c = cp[i];
-			area += p.y * (x - p.x);
+			area += p.y * (c.x - p.x);
 			p = c;
 		}
 		return area;
