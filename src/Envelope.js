@@ -13,6 +13,9 @@ function Envelope(){
 
 Envelope.prototype = {
 	add: function(index, rect){
+		// This function mutates an array, and its objects.
+		// It is possible to make objects immutable.
+		// Potentially, it may reduce the memory load.
 		var cp = this.cornerPoints, p = cp[index],
 			br = {x: p.x + rect.w, y: p.y + rect.h};
 		rect.x = p.x;
@@ -41,6 +44,14 @@ Envelope.prototype = {
 			p = c;
 		}
 		return area;
+	},
+	clone: function(){
+		// The next one is a candidate for heya-pipe.
+		// All it does it clones an array and its objects.
+		// If we make objects immutable, we can just slice an array.
+		return this.cornerPoints.map(function(p){
+			return {x: p.x, y: p.y};
+		});
 	}
 };
 
