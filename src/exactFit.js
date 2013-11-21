@@ -26,10 +26,10 @@ function exactFit(rectangles){
 	while(stack.length){
 		var top = stack[stack.length - 1], cp = top.envelope.cornerPoints;
 		if(top.level >= rectangles.length){
-			// did we place all rectangles? yes
+			// we placed all rectangles
 			score = cp[0].y * cp[cp.length - 1].x - top.area;
 			if(score < bestScore){
-				// is it the best score so far? yes
+				// the best score so far
 				bestScore = score;
 				bestLayout = rectangles.map(function(rect){
 					return {x: rect.x, y: rect.y};
@@ -43,7 +43,7 @@ function exactFit(rectangles){
 			continue;
 		}
 		if(top.index >= cp.length){
-			// did we try all corner points for this rectangle? yes
+			// we tried all corner points for this rectangle
 			stack.pop();
 			continue;
 		}
@@ -52,7 +52,7 @@ function exactFit(rectangles){
 		score = e.areaIn() - top.area - rect.area;
 		++top.index;
 		if(score < bestScore){
-			// is our current score better than the best score so far? yes
+			// our current score is better than the best score so far
 			stack.push({level: top.level + 1, envelope: e, area: top.area + rect.area, index: 0});
 		}
 	}
