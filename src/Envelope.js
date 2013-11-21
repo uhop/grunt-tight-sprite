@@ -19,6 +19,7 @@ Envelope.prototype = {
 			br = {x: p.x + rect.w, y: p.y + rect.h};
 		rect.x = p.x;
 		rect.y = p.y;
+		rect.i = index;
 		var i1 = searchVertically(cp, br, 0, index),
 			i2 = searchHorizontally(cp, br, index + 1),
 			len = i2 - i1;
