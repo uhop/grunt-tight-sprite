@@ -15,21 +15,28 @@ function RectState(rectangles){
 
 
 RectState.prototype = {
-	allocate: function(group){
-		var i = -1;
-		++group;
-		do{
-			for(++i; !this.groups[i].length; ++i);
-		}while(--group);
-		var index = this.groups[i].pop();
+	allocate: function(groupIndex){
+		for(var i = 0;; ++i){
+			var group = this.groups[i];
+			if(group.length){
+				if(!groupIndex--){
+					break;
+				}
+			}
+		}
+		var index = group.pop();
 		this.used[index] = 1;
+		if(!group.length){
+			--this.available;
+		}
 		return index;
 	},
 	free: function(index){
 		if(this.used[index]){
 			this.used[index] = 0;
-			var rect = this.rectangles[index];
-			this.groups[rect.group].push(index);
+			if(this.groups[this.rectangles[index].group].push(index) == 1){
+				++this.available;
+			}
 		}
 		return this;
 	}
