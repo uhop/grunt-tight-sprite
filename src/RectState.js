@@ -9,34 +9,37 @@ function RectState(rectangles){
 	// rectangles are assumed to be sorted and groupped
 	this.rectangles = rectangles;
 	this.groups = groupRectangles.getGroups(rectangles);
-	this.available = this.groups.length;
+	this.groupList = new DLink();
+	this.groupNodes = this.groups.map(function(group, index){
+		var node = new DLink();
+		node.index = index;
+		this.groupList.addBefore(node);
+		return node;
+	}, this);
 	this.used = {};
 }
 
 
 RectState.prototype = {
-	allocate: function(groupIndex){
-		for(var i = 0;; ++i){
-			var group = this.groups[i];
-			if(group.length){
-				if(!groupIndex--){
-					break;
-				}
-			}
+	getRectangle: function(node){
+		node = node || this.groupList.next;
+		if(node === this.groupList){
+			return null;
 		}
-		var index = group.pop();
+		var next = node.next,
+			group = this.groups[node.index],
+			index = group.pop();
 		this.used[index] = 1;
 		if(!group.length){
-			--this.available;
+			node.remove();
 		}
-		return index;
+		return {index: index, next: next};
 	},
-	free: function(index){
-		if(this.used[index]){
-			this.used[index] = 0;
-			if(this.groups[this.rectangles[index].group].push(index) == 1){
-				++this.available;
-			}
+	free: function(index, next){
+		this.used[index] = 0;
+		var groupIndex = this.rectangles[index].group;
+		if(this.groups[groupIndex].push(index) == 1){
+			next.addBefore(this.groupNodes[groupIndex]);
 		}
 		return this;
 	}
