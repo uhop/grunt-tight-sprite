@@ -19,25 +19,25 @@ var Envelope = require("./Envelope");
 // 4. Save an envelope, area, and start the corner point from 0.
 
 
-function lookAhead2(rectangles, stack, depth, callback){
+function lookAhead2(state, stack, depth, callback){
 	var bestScore = Infinity, bottom = stack.length - 1,
-		limit = isNaN(depth) ? rectangles.length :
-			Math.min(rectangles.length, bottom + depth),
-		useFinalTest = limit == rectangles.length,
-		mark, level, top, cp, rect, score;
+		rl = state.rectangles.length, limit = Math.min(rl, bottom + depth),
+		useFinalTest = limit == rl, mark, level, top, cp;
 	while(stack.length > bottom){
 		if(stack.length !== mark){
 			level = stack.length - 1;
 			top = stack[level];
 			cp = top.envelope.cornerPoints;
+			mark = stack.length;
 		}
 		if(level >= limit){
 			// we placed all rectangles
-			score = (useFinalTest ? cp[0].y * cp[cp.length - 1].x : top.envelope.areaIn()) - top.area;
+			var score = (useFinalTest ? cp[0].y * cp[cp.length - 1].x :
+					top.envelope.areaIn()) - top.area;
 			if(score < bestScore){
 				// the best score so far
 				bestScore = score;
-				callback && callback(score, rectangles, bottom, limit);
+				callback && callback(score, state.rectangles, bottom, limit);
 				if(score == 0){
 					// the perfect score
 					stack.splice(bottom, stack.length);
@@ -52,24 +52,24 @@ function lookAhead2(rectangles, stack, depth, callback){
 			stack.pop();
 			continue;
 		}
-		if(top.group >= groups.length){
+		state.free(top.rectIndex, top.next);
+		var next = state.getRectangle(top.next);
+		if(!next){
 			// we tried all rectangles
 			++top.index;
-			top.rectangle = 0;
+			top.rectIndex = -1;
+			top.next = null;
 			continue;
 		}
-		if(top.rectangle in taken){
-			// the current rectangle is already used
-			++top.rectangle;
-			continue;
-		}
-		rect = rectangles[top.rectangle];
-		var e = new Envelope(top.envelope), area = top.area + rect.area;
+		top.rectIndex = next.index;
+		top.next = next.next;
+		var rect = state.rectangles[top.rectIndex],
+			e = new Envelope(top.envelope), area = top.area + rect.area;
 		e.add(top.index, rect);
-		// prepare for the next cycle: unfinished
-		stack.push({envelope: e, area: area, index: 0, group: 0});
+		// prepare for the next cycle
+		stack.push({envelope: e, area: area, index: 0, rectIndex: -1, next: null});
 	}
 	return bestScore;
 }
 
-module.exports = lookAhead;
+module.exports = lookAhead2;
