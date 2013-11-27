@@ -37,7 +37,7 @@ module.exports = {
 			swapGroups[i] = s;
 		}
 		return swapGroups;
-	}
+	},
 	exclude: function(set, group){
 		for(var i = 0, n = group.length; i < n; ++i){
 			delete set[group[i]];
