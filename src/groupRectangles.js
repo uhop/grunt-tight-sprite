@@ -7,6 +7,7 @@ module.exports = {
 		// so identically shaped rectangles are grouped
 		var prev = null, groups = [], group = [];
 		rectangles.forEach(function(rect, i){
+			rect.n = i;
 			if(i){
 				rect.group = prev.group;
 				if(rect.w != prev.w || rect.h != prev.h){
