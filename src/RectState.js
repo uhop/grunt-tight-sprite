@@ -10,7 +10,7 @@ function RectState(rectangles){
 	this.rectangles = rectangles;
 	this.groups = groupRectangles.getGroups(rectangles);
 	this.groupList = new DLink();
-	this.groupNodes = this.groups.map(function(group, index){
+	this.groupNodes = this.groups.map(function(_, index){
 		var node = new DLink();
 		node.index = index;
 		this.groupList.addBefore(node);
@@ -36,10 +36,12 @@ RectState.prototype = {
 		return {index: index, next: next};
 	},
 	free: function(index, next){
-		this.used[index] = 0;
-		var groupIndex = this.rectangles[index].group;
-		if(this.groups[groupIndex].push(index) == 1){
-			next.addBefore(this.groupNodes[groupIndex]);
+		if(index >= 0 && next){
+			this.used[index] = 0;
+			var groupIndex = this.rectangles[index].group;
+			if(this.groups[groupIndex].push(index) == 1){
+				next.addBefore(this.groupNodes[groupIndex]);
+			}
 		}
 		return this;
 	}
