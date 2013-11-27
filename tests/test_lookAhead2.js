@@ -1,9 +1,10 @@
 var lookAhead2 = require("../src/lookAhead2");
+var sortRectangles = require("../src/sortRectangles");
 
 var rectangles = [], i;
 
 // create a sample
-/*
+
 for(i = 0; i < 10; ++i){
 	rectangles.push({w: 16, h: 16});
 }
@@ -16,36 +17,16 @@ for(i = 0; i < 11; ++i){
 for(i = 0; i < 4; ++i){
 	rectangles.push({w: 40, h: 40});
 }
-*/
 
+/*
 rectangles.push(
-	{w: 32, h: 32},
+	{w: 32, h: 16},
 	{w: 16, h: 16},
 	{w: 16, h: 16}
 );
+*/
 
-// add areas
-rectangles.forEach(function(rect){
-	rect.area = rect.w * rect.h;
-});
-
-// add groups
-var prev = null;
-rectangles.forEach(function(rect){
-	if(prev){
-		rect.group = prev.group;
-		if(rect.w != prev.w || rect.h != prev.h){
-			++rect.group;
-		}
-	}else{
-		rect.group = 0;
-	}
-	prev = rect;
-});
-prev = null;
-
-// sort in a reverse area order
-rectangles.sort(function(a, b){ return b.area - a.area; });
+sortRectangles.byAreaDescending(rectangles);
 
 console.log(rectangles.length + " rectangles: ", rectangles);
 
@@ -57,11 +38,12 @@ console.log("width: " + totalWidth + ", height: " + totalHeight + ", waste: " +
 
 var RectState = require("../src/RectState");
 var Envelope = require("../src/Envelope");
+
 var state = new RectState(rectangles), e = new Envelope(),
 	stack = [{envelope: e, area: 0, index: 0, rectIndex: -1, next: null}];
 
-var result = lookAhead2(state, stack, 3, function(score, rectangles){
-			console.log(score, rectangles);
+var result = lookAhead2(state, stack, rectangles.length, function(score, state){
+			console.log(score, state.rectangles);
 		});
 
 console.log(result);
