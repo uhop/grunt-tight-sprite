@@ -22,7 +22,7 @@ var Envelope = require("./Envelope");
 function lookAhead2(state, stack, depth, callback){
 	var bestScore = Infinity, bottom = stack.length - 1,
 		rl = state.rectangles.length, limit = Math.min(rl, bottom + depth),
-		useFinalTest = limit == rl, mark, level, top, cp;
+		mark, level, top, cp;
 	while(stack.length > bottom){
 		if(stack.length !== mark){
 			level = stack.length - 1;
@@ -32,15 +32,18 @@ function lookAhead2(state, stack, depth, callback){
 		}
 		if(level >= limit){
 			// we placed all rectangles
-			var score = (useFinalTest ? cp[0].y * cp[cp.length - 1].x :
-					top.envelope.areaIn()) - top.area;
+			var score = cp[0].y * cp[cp.length - 1].x - top.area;
 			if(score < bestScore){
 				// the best score so far
 				bestScore = score;
-				callback && callback(score, state.rectangles, bottom, limit);
+				callback && callback(score, state, stack, bottom, limit);
 				if(score == 0){
+					console.log(top.envelope.areaIn(), top.area, top.envelope);
 					// the perfect score
-					stack.splice(bottom, stack.length);
+					while(stack.length > bottom){
+						var top = stack.pop();
+						state.free(top.rectIndex, top.next);
+					}
 					break;
 				}
 			}
