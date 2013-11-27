@@ -20,7 +20,6 @@ function windowOpt2(rectangles, depth){
 		bestPosition.y = rect.y;
 		bestPosition.i = rect.i;
 		bestPosition.n = rect.n;
-		console.log(score, bestPosition, rect);
 	}
 
 	function captureLayout(score, state, stack, bottom){
@@ -43,7 +42,6 @@ function windowOpt2(rectangles, depth){
 
 	var n = rectangles.length - depth, layout = new Array(n);
 	for(var i = 0; i < n; ++i){
-		console.log("*** RECTANGLE #" + i);
 		stack.push({envelope: envelope, area: area, index: 0, rectIndex: -1, next: null});
 		lookAhead(state, stack, depth, capturePosition);
 		layout[i] = {x: bestPosition.x, y: bestPosition.y, i: bestPosition.i, n: bestPosition.n};

@@ -38,10 +38,9 @@ function lookAhead2(state, stack, depth, callback){
 				bestScore = score;
 				callback && callback(score, state, stack, bottom, limit);
 				if(score == 0){
-					console.log(top.envelope.areaIn(), top.area, top.envelope);
 					// the perfect score
 					while(stack.length > bottom){
-						var top = stack.pop();
+						top = stack.pop();
 						state.free(top.rectIndex, top.next);
 					}
 					break;
