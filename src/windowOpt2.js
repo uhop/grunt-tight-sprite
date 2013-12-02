@@ -7,8 +7,10 @@ var lookAhead = require("./lookAhead2");
 var sortRectangles = require("./sortRectangles");
 
 
-function windowOpt2(rectangles, depth){
+function windowOpt2(rectangles, depth, finalDepth){
 	sortRectangles.byAreaDescending(rectangles);
+
+	finalDepth = Math.min(isNaN(finalDepth) ? depth : finalDepth, depth);
 
 	var bestScore, bestPosition = {x: 0, y: 0, i: 0, n: 0}, bestLayout = null,
 		envelope = new Envelope(), state = new RectState(rectangles),
@@ -31,7 +33,7 @@ function windowOpt2(rectangles, depth){
 		}
 	}
 
-	if(rectangles.length <= depth){
+	if(rectangles.length <= finalDepth){
 		stack.push({envelope: envelope, area: area, index: 0, rectIndex: -1, next: null});
 		bestScore = lookAhead(state, stack, rectangles.length, captureLayout);
 		return {
@@ -40,7 +42,7 @@ function windowOpt2(rectangles, depth){
 		};
 	}
 
-	var n = rectangles.length - depth, layout = new Array(n);
+	var n = rectangles.length - finalDepth, layout = new Array(n);
 	for(var i = 0; i < n; ++i){
 		stack.push({envelope: envelope, area: area, index: 0, rectIndex: -1, next: null});
 		lookAhead(state, stack, depth, capturePosition);
@@ -53,7 +55,7 @@ function windowOpt2(rectangles, depth){
 		area += rect.area;
 	}
 	stack.push({envelope: envelope, area: area, index: 0, rectIndex: -1, next: null});
-	bestScore = lookAhead(state, stack, depth, captureLayout);
+	bestScore = lookAhead(state, stack, finalDepth, captureLayout);
 
 	return {
 		score:  bestScore,

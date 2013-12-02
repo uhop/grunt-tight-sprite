@@ -17,15 +17,8 @@ for(i = 0; i < 4; ++i){
 }
 
 var result = windowOpt(rectangles, 4);
-console.log(rectangles.length + " rectangles: ", rectangles);
-console.log(result);
-
-var totalHeight = rectangles.reduce(function(acc, rect){ return acc + rect.h; }, 0),
-	totalWidth  = rectangles.reduce(function(acc, rect){ return Math.max(acc, rect.w); }, -Infinity),
-	totalArea   = rectangles.reduce(function(acc, rect){ return acc + rect.area; }, 0);
-console.log("width: " + totalWidth + ", height: " + totalHeight + ", waste: " +
-	(totalWidth * totalHeight - totalArea));
-
+//console.log(rectangles.length + " rectangles: ", rectangles);
+//console.log(result);
 
 // crude ASCII visualization
 
@@ -41,8 +34,6 @@ var width = result.layout.reduce(function(acc, pos){
 				bottom = pos.y + rect.h;
 			return Math.max(acc, bottom);
 		}, 0);
-
-console.log("width: ", width, " height: ", height);
 
 // we know that all our rectangles are divisible by 8
 width  /= 8;
@@ -83,3 +74,16 @@ result.layout.forEach(function(pos){
 canvas.forEach(function(line){
 	console.log(line);
 });
+
+
+var totalHeight = rectangles.reduce(function(acc, rect){ return acc + rect.h; }, 0),
+	totalWidth  = rectangles.reduce(function(acc, rect){ return Math.max(acc, rect.w); }, -Infinity),
+	totalArea   = rectangles.reduce(function(acc, rect){ return acc + rect.area; }, 0);
+
+console.log("width: " + (width * 8) + ", height: " + (height * 8) + ", waste: " +
+	(width * height * 64 - totalArea) + " (" +
+		((width * height * 64 - totalArea) / totalArea * 100).toFixed(2) + "%)");
+
+console.log("width: " + totalWidth + ", height: " + totalHeight + ", waste: " +
+	(totalWidth * totalHeight - totalArea) + " (" +
+		((totalWidth * totalHeight - totalArea) / totalArea * 100).toFixed(2) + "%)");
