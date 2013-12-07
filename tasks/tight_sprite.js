@@ -214,11 +214,9 @@ module.exports = function(grunt) {
 					}
 				});
 
-				layout.forEach(function(pos){
-					var rect = images[pos.n], image = new (Canvas.Image)();
-					image.src = rect.name;
-					ctx.drawImage(image, pos.x, pos.y);
-					cssOutput.write(tmpl({
+				layout.map(function(pos){
+					var rect = images[pos.n];
+					return {
 						name: rect.name,
 						shortName: rect.shortName,
 						className: rect.className,
@@ -227,7 +225,17 @@ module.exports = function(grunt) {
 						x: pos.x,
 						y: pos.y,
 						url: url
-					}));
+					};
+				}).sort(function(a, b){
+					if(a.shortName === b.shortName){
+						return -1;
+					}
+					return a.shortName < b.shortName ? -1 : 1;
+				}).forEach(function(rect){
+					var image = new (Canvas.Image)();
+					image.src = rect.name;
+					ctx.drawImage(image, rect.x, rect.y);
+					cssOutput.write(tmpl(rect));
 				});
 				cssOutput.end();
 
