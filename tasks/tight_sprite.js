@@ -110,32 +110,30 @@ module.exports = function(grunt) {
 
 					// 1st pass
 					var result1 = windowOpt(images, produceScore1, options.depth, options.finalDepth),
-						area1 = getArea(images, result1.layout);
-					if(area1 === totalArea){
-						layout = result1.layout;
+						area = getArea(images, result1.layout);
+
+					layout = result1.layout;
+					if(area === totalArea){
 						break positioning;
 					}
 
 					// 2nd pass
-					var result2 = windowOpt(images, produceScore1, options.depth, options.finalDepth),
+					var result2 = windowOpt(images, produceScore2, options.depth, options.finalDepth),
 						area2 = getArea(images, result2.layout);
-					if(area2 === totalArea){
-						layout = result2.layout;
-						break positioning;
-					}
 
-					if(area1 < area2){
-						layout = result1.layout;
-						area = area1;
-					}else{
+					if(area2 < area){
 						layout = result2.layout;
 						area = area2;
+						if(area === totalArea){
+							break positioning;
+						}
 					}
 
 					// does it make sense to try 90 degree rotation?
 
 					var images2 = images.map(function(image){
-							return {name: image.name, shortName: image.shortName, w: image.h, h: image.w};
+							return {name: image.name, shortName: image.shortName,
+								className: image.className, w: image.h, h: image.w};
 						});
 					sortRectangles.byAreaDescending(images2);
 					for(var i = 0, n = images.length; i < n; ++i){
@@ -153,14 +151,13 @@ module.exports = function(grunt) {
 					// 3rd pass
 					var result3 = windowOpt(images2, produceScore1, options.depth, options.finalDepth),
 						area3 = getArea(images2, result3.layout);
-					if(area3 === totalArea){
-						layout = rotateLayout(result3.layout);
-						break positioning;
-					}
 
 					if(area3 < area){
 						layout = rotateLayout(result3.layout);
 						area = area3;
+						if(area === totalArea){
+							break positioning;
+						}
 					}
 
 					// 4th pass
@@ -216,8 +213,6 @@ module.exports = function(grunt) {
 						done();
 					}
 				});
-
-				console.log(cssName, imgName, url);
 
 				layout.forEach(function(pos){
 					var rect = images[pos.n], image = new (Canvas.Image)();
