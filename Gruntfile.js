@@ -11,11 +11,16 @@
 module.exports = function(grunt) {
 	grunt.initConfig({
 		tight_sprite: {
-			icons: {
+			sprite1: {
 				options: {},
-				cwd: "/media/raid/Work/12qcp/fc2/frontend/images/icons",
+				cwd: "tests/icons",
+				src: ["*/**/*.{png,jpg,jpeg,gif}", "!x16/**/*", "!x64/**/*"],
+				dest: "tests/icons/sprite1.png"
+			},
+			fc2: {
+				cwd: "../12qcp/fc2/frontend/images/icons",
 				src: "*/**/*.{png,jpg,jpeg,gif}",
-				dest: "./result.png"
+				dest: "sprite.png"
 			}
 		}
 	});
