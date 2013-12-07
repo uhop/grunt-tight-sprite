@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 				options: {},
 				cwd: "tests/icons",
 				src: ["*/**/*.{png,jpg,jpeg,gif}"],
-				dest: "tests/icons/sprite1.png"
+				dest: "tests/icons/sprite1"
 			}
 		}
 	});
@@ -23,4 +23,5 @@ module.exports = function(grunt) {
 	grunt.loadTasks("tasks");
 
 	grunt.registerTask("default", "tight_sprite");
+	grunt.registerTask("test",    "tight_sprite");
 };
