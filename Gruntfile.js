@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 			sprite1: {
 				options: {},
 				cwd: "tests/icons",
-				src: ["*/**/*.{png,jpg,jpeg,gif}", "!x16/**/*", "!x64/**/*"],
+				src: ["*/**/*.{png,jpg,jpeg,gif}"],
 				dest: "tests/icons/sprite1.png"
 			},
 			fc2: {

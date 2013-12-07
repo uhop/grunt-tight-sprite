@@ -8,25 +8,8 @@ var sizeOf = require("image-size");
 var Canvas = require("canvas");
 var _      = require("lodash");
 
-var windowing = require("tight-sprite/windowing");
-var getSize   = require("tight-sprite/lib/utils/getSize");
-
-
-// score functions
-
-var strategies = [
-		function produceScore1(top, stack, state){
-			var cp = top.envelope.cornerPoints, w = cp[cp.length - 1].x, h = cp[0].y,
-				diff = cp.length - stack[stack.length - 2].envelope.cornerPoints.length;
-			return [Math.max(state.totalArea, w * h), top.envelope.areaIn() - top.area, diff];
-		},
-		function produceScore2(top, stack, state){
-			var cp = top.envelope.cornerPoints, w = cp[cp.length - 1].x, h = cp[0].y,
-				diff = cp.length - stack[stack.length - 2].envelope.cornerPoints.length;
-			return [Math.max(state.totalArea, w * h), top.envelope.areaIn() - top.area,
-				diff, w * h < state.totalArea ? Math.abs(h - w) : 0];
-		}
-	];
+var solver  = require("tight-sprite/palletizing");
+var getSize = require("tight-sprite/lib/utils/getSize");
 
 
 // template helpers
@@ -54,9 +37,7 @@ module.exports = function(grunt) {
 			var options = this.options({
 					jpeg: null,
 					classPrefix: "sprite_",
-					absolute: false,
-					depth: 3,
-					finalDepth: 6
+					absolute: false
 				});
 
 			this.files.forEach(function(file){
@@ -72,11 +53,7 @@ module.exports = function(grunt) {
 					};
 				});
 
-				var result = windowing(images, strategies, {
-						depth: options.depth,
-						finalDepth: options.finalDepth
-					}),
-					layout = result.layout;
+				var result = solver(images), layout = result.layout;
 				images = result.rectangles;
 
 				// draw images
