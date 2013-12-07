@@ -20,10 +20,6 @@
     {
       "type": "New BSD",
       "url": "http://github.com/uhop/grunt-tight-sprite/blob/master/LICENSE"
-    },
-    {
-      "type": "AFL 2.1",
-      "url": "http://github.com/uhop/grunt-tight-sprite/blob/master/LICENSE"
     }
   ],
   "main": "Gruntfile.js",
