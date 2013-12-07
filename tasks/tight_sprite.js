@@ -35,9 +35,10 @@ module.exports = function(grunt) {
 			var done = this.async();
 
 			var options = this.options({
-					jpeg: null,
+					jpeg:        null,
 					classPrefix: "sprite_",
-					absolute: false
+					absolute:    false,
+					silent:      false
 				});
 
 			this.files.forEach(function(file){
@@ -53,7 +54,7 @@ module.exports = function(grunt) {
 					};
 				});
 
-				var result = solver(images), layout = result.layout;
+				var result = solver(images, {silent: options.silent}), layout = result.layout;
 				images = result.rectangles;
 
 				// draw images
