@@ -8,8 +8,7 @@ var sizeOf = require("image-size");
 var Canvas = require("canvas");
 var _      = require("lodash");
 
-var windowOpt      = require("tight-sprite/lib/windowOpt");
-var sortRectangles = require("tight-sprite/lib/sortRectangles");
+var windowOpt = require("tight-sprite/lib/windowOpt");
 
 
 // score functions
@@ -134,8 +133,9 @@ module.exports = function(grunt) {
 					var images2 = images.map(function(image){
 							return {name: image.name, shortName: image.shortName,
 								className: image.className, w: image.h, h: image.w};
+						}).sort(function(a, b){
+							return b.area < a.area || a.area === b.area && a.w < b.w;
 						});
-					sortRectangles.byAreaDescending(images2);
 					for(var i = 0, n = images.length; i < n; ++i){
 						var img = images[i], img2 = images2[i];
 						if(img.w !== img2.w || img.h !== img2.h){
