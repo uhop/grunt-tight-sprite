@@ -16,11 +16,6 @@ module.exports = function(grunt) {
 				cwd: "tests/icons",
 				src: ["*/**/*.{png,jpg,jpeg,gif}"],
 				dest: "tests/icons/sprite1.png"
-			},
-			fc2: {
-				cwd: "../12qcp/fc2/frontend/images/icons",
-				src: "*/**/*.{png,jpg,jpeg,gif}",
-				dest: "sprite.png"
 			}
 		}
 	});
