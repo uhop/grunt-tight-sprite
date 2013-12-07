@@ -8,55 +8,25 @@ var sizeOf = require("image-size");
 var Canvas = require("canvas");
 var _      = require("lodash");
 
-var windowOpt = require("tight-sprite/lib/windowOpt");
+var windowing = require("tight-sprite/windowing");
+var getSize   = require("tight-sprite/lib/utils/getSize");
 
 
 // score functions
 
-function produceScore1(top, stack, state){
-	var cp = top.envelope.cornerPoints, w = cp[cp.length - 1].x, h = cp[0].y,
-		diff = cp.length - stack[stack.length - 2].envelope.cornerPoints.length;
-	return [Math.max(state.totalArea, w * h), top.envelope.areaIn() - top.area, diff];
-}
-
-function produceScore2(top, stack, state){
-	var cp = top.envelope.cornerPoints, w = cp[cp.length - 1].x, h = cp[0].y,
-		diff = cp.length - stack[stack.length - 2].envelope.cornerPoints.length;
-	return [Math.max(state.totalArea, w * h), top.envelope.areaIn() - top.area, diff, w * h < state.totalArea ? Math.abs(h - w) : 0];
-}
-
-
-// geometric helpers
-
-function getTotalArea(rectangles){
-	return rectangles.reduce(function(acc, rect){ return acc + rect.w * rect.h; }, 0);
-}
-
-function getSize(rectangles, layout){
-	var w = 0, h = 0;
-	layout.forEach(function(pos){
-		var rect = rectangles[pos.n];
-		w = Math.max(w, pos.x + rect.w);
-		h = Math.max(h, pos.y + rect.h);
-	});
-	return {w: w, h: h};
-}
-
-function getArea(rectangles, layout){
-	var size = getSize(rectangles, layout);
-	return size.w * size.h;
-}
-
-function rotateLayout(layout){
-	return layout.map(function(){
-		return {
-			i: layout.i,
-			n: layout.n,
-			x: layout.y,
-			y: layout.x
+var strategies = [
+		function produceScore1(top, stack, state){
+			var cp = top.envelope.cornerPoints, w = cp[cp.length - 1].x, h = cp[0].y,
+				diff = cp.length - stack[stack.length - 2].envelope.cornerPoints.length;
+			return [Math.max(state.totalArea, w * h), top.envelope.areaIn() - top.area, diff];
+		},
+		function produceScore2(top, stack, state){
+			var cp = top.envelope.cornerPoints, w = cp[cp.length - 1].x, h = cp[0].y,
+				diff = cp.length - stack[stack.length - 2].envelope.cornerPoints.length;
+			return [Math.max(state.totalArea, w * h), top.envelope.areaIn() - top.area,
+				diff, w * h < state.totalArea ? Math.abs(h - w) : 0];
 		}
-	});
-}
+	];
 
 
 // template helpers
@@ -102,72 +72,12 @@ module.exports = function(grunt) {
 					};
 				});
 
-				var totalArea = getTotalArea(images), layout, area;
-
-				positioning: {
-					// normal orientation
-
-					// 1st pass
-					var result1 = windowOpt(images, produceScore1, options.depth, options.finalDepth),
-						area = getArea(images, result1.layout);
-
-					layout = result1.layout;
-					if(area === totalArea){
-						break positioning;
-					}
-
-					// 2nd pass
-					var result2 = windowOpt(images, produceScore2, options.depth, options.finalDepth),
-						area2 = getArea(images, result2.layout);
-
-					if(area2 < area){
-						layout = result2.layout;
-						area = area2;
-						if(area === totalArea){
-							break positioning;
-						}
-					}
-
-					// does it make sense to try 90 degree rotation?
-
-					var images2 = images.map(function(image){
-							return {name: image.name, shortName: image.shortName,
-								className: image.className, w: image.h, h: image.w};
-						}).sort(function(a, b){
-							return b.area < a.area || a.area === b.area && a.w < b.w;
-						});
-					for(var i = 0, n = images.length; i < n; ++i){
-						var img = images[i], img2 = images2[i];
-						if(img.w !== img2.w || img.h !== img2.h){
-							break;
-						}
-					}
-					if(i === n){
-						break positioning;
-					}
-
-					// 90 degree rotated
-
-					// 3rd pass
-					var result3 = windowOpt(images2, produceScore1, options.depth, options.finalDepth),
-						area3 = getArea(images2, result3.layout);
-
-					if(area3 < area){
-						layout = rotateLayout(result3.layout);
-						area = area3;
-						if(area === totalArea){
-							break positioning;
-						}
-					}
-
-					// 4th pass
-					var result4 = windowOpt(images2, produceScore2, options.depth, options.finalDepth),
-						area4 = getArea(images2, result4.layout);
-
-					if(area4 < area){
-						layout = rotateLayout(result4.layout);
-					}
-				}
+				var result = windowing(images, strategies, {
+						depth: options.depth,
+						finalDepth: options.finalDepth
+					}),
+					layout = result.layout;
+				images = result.rectangles;
 
 				// draw images
 
