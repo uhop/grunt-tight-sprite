@@ -37,17 +37,36 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+#### options.classPrefix
 Type: `String`
-Default value: `',  '`
+Default value: `'sprite_'`
 
-A string value that is used to do something with whatever.
+A string value that is used as a prefix for generated CSS class names.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+#### options.absolute
+Type: `Boolean`
+Default value: `false`
 
-A string value that is used to do something else with whatever else.
+A boolean value that indicates to use an absolute path of a generated sprite image in CSS.
+Otherwise a path relative to a CSS file is used.
+
+Usually `absolute: true` is used for a postprocessing of a generated CSS file to replace an absolute file path with an absolute URL.
+
+#### options.silent
+Type: `Boolean`
+Default value: `false`
+
+A boolean value that indicates to suppress all informational output to console.
+
+#### options.jpeg
+Type: `Object`
+Default value: `null`
+
+This parameters governs the output type: JPEG (when non-null), or PNG (when null).
+
+If specified, it is passed to a `canvas` object as parameter when creating a JPEG stream.
+See [Canvas#jpegStream() and Canvas#syncJPEGStream()](https://github.com/LearnBoost/node-canvas/blob/master/Readme.md#canvasjpegstream-and-canvassyncjpegstream)
+for details. If `null`, a PNG stream is created.
 
 ### Usage Examples
 
