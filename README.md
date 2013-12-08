@@ -1,4 +1,4 @@
-# grunt-tight-sprite  [![Build Status](https://secure.travis-ci.org/uhop/grunt-tight-sprite.png?branch=master)](http://travis-ci.org/uhop/grunt-tight-sprite)
+# grunt-tight-sprite  [![Build Status](https://secure.travis-ci.org/uhop/grunt-tight-sprite.png?branch=master)](http://travis-ci.org/uhop/grunt-tight-sprite) [![Dependency Status](https://david-dm.org/uhop/grunt-tight-sprite.png)](https://david-dm.org/uhop/grunt-tight-sprite) [![devDependency Status](https://david-dm.org/uhop/grunt-tight-sprite/dev-status.png)](https://david-dm.org/uhop/grunt-tight-sprite#info=devDependencies)
 
 > Tight 2D packing of images into a sprite with a corresponding CSS.
 
