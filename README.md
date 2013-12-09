@@ -75,3 +75,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## Release History
 
 0.1.0 -- the initial release
+0.1.1 -- added support for file extensions.

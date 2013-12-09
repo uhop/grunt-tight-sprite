@@ -1,7 +1,7 @@
 {
   "name": "grunt-tight-sprite",
   "description": "Tight 2D packing of images into a sprite with a corresponding CSS.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/uhop/grunt-tight-sprite",
   "author": {
     "name": "Eugene Lazutkin",
