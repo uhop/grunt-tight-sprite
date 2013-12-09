@@ -57,6 +57,8 @@ Following options are supported and documented in excrusiating details with exam
   include image file's extension in a generated CSS class name. Default: `false`.
 - [options.jpeg](https://github.com/uhop/grunt-tight-sprite/wiki/options.jpeg) --
   object, when specified it generates JPEG, or PNG when `null`. Default: `null` (PNG).
+- [options.includePath](https://github.com/uhop/grunt-tight-sprite/wiki/options.includePath) --
+  include image file's path in a generated CSS class name. Default: `true`.
 - [options.silent](https://github.com/uhop/grunt-tight-sprite/wiki/options.silent) --
   suppress all informational output to console. Default: `false`.
 - [options.template](https://github.com/uhop/grunt-tight-sprite/wiki/options.template) --
