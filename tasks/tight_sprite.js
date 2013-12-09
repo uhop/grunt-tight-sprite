@@ -78,8 +78,8 @@ module.exports = function(grunt) {
 					imgName = file.dest + (options.jpeg ? ".jpg" : ".png");
 					cssName = file.dest + ".css";
 				}
-				if(file.css){
-					cssName = file.css;
+				if(options.cssDest){
+					cssName = options.cssDest;
 				}
 
 				var tmpl;
