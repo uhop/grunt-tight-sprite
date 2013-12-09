@@ -53,6 +53,8 @@ Following options are supported and documented in excrusiating details with exam
   prefix for generated CSS class names. Default: `'sprite_'`.
 - [options.cssDest](https://github.com/uhop/grunt-tight-sprite/wiki/options.cssDest) --
   file name for a generated CSS file. Default: the same as `dest`, but with `'.css'` extension.
+- [options.IncludeExt](https://github.com/uhop/grunt-tight-sprite/wiki/options.includeExt) --
+  include image file's extension in a generated CSS class name. Default: `false`.
 - [options.jpeg](https://github.com/uhop/grunt-tight-sprite/wiki/options.jpeg) --
   object, when specified it generates JPEG, or PNG when `null`. Default: `null` (PNG).
 - [options.silent](https://github.com/uhop/grunt-tight-sprite/wiki/options.silent) --

@@ -14,7 +14,13 @@ var getSize = require("tight-sprite/lib/utils/getSize");
 
 // template helpers
 
-function makeClassName(shortName){
+function makeClassName(shortName, includeExt){
+	if(!includeExt){
+		var ext = path.extname(shortName);
+		if(ext){
+			shortName = shortName.replace(new RegExp("\\" + ext + "$"), "");
+		}
+	}
 	return shortName.replace(".", "_").replace(path.sep, "_");
 }
 
@@ -37,6 +43,7 @@ module.exports = function(grunt) {
 			var options = this.options({
 					jpeg:        null,
 					classPrefix: "sprite_",
+					includeExt:  false,
 					absolute:    false,
 					silent:      false
 				});
@@ -48,7 +55,7 @@ module.exports = function(grunt) {
 					return {
 						name: name,
 						shortName: shortName,
-						className: options.classPrefix + makeClassName(shortName),
+						className: options.classPrefix + makeClassName(shortName, options.includeExt),
 						w: size.width,
 						h: size.height
 					};
