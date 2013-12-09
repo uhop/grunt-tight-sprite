@@ -56,6 +56,7 @@ module.exports = function(grunt) {
 						name: name,
 						shortName: shortName,
 						className: options.classPrefix + makeClassName(shortName, options.includeExt),
+						extension: path.extname(shortName),
 						w: size.width,
 						h: size.height
 					};
@@ -115,6 +116,7 @@ module.exports = function(grunt) {
 						name: rect.name,
 						shortName: rect.shortName,
 						className: rect.className,
+						extension: rect.extension,
 						w: rect.w,
 						h: rect.h,
 						x: pos.x,
