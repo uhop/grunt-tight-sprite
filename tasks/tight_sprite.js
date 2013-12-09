@@ -24,7 +24,7 @@ function makeClassName(shortName, options){
 			shortName = shortName.replace(new RegExp("\\" + ext + "$"), "");
 		}
 	}
-	return shortName.replace(".", "_").replace(path.sep, "_");
+	return shortName.replace(/\./g, "_").replace(new RegExp("\\" + path.sep, "g"), "_");
 }
 
 var defaultTemplate =
