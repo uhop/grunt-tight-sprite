@@ -76,6 +76,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.1.4 -- accurate work with layouting 0 and 1 rectangle.
+
 0.1.3 -- a bug fix.
 
 0.1.2 -- added support for skipping path from CSS class names.

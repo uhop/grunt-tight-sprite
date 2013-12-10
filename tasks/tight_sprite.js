@@ -53,7 +53,7 @@ module.exports = function(grunt) {
 				});
 
 			this.files.forEach(function(file){
-				var images = file.src.map(function(shortName){
+				var layout, images = file.src.map(function(shortName){
 					var name = file.cwd ? path.join(file.cwd, shortName) : shortName,
 						size = sizeOf(name);
 					return {
@@ -66,8 +66,20 @@ module.exports = function(grunt) {
 					};
 				});
 
-				var result = solver(images, {silent: options.silent}), layout = result.layout;
-				images = result.rectangles;
+				if(images.length === 0){
+					grunt.fatal("task: tight_sprite: " + this.target + " has 0 source files, exiting.");
+					done();
+					return;
+				}
+
+				if(images.length > 1){
+					var result = solver(images, {silent: options.silent});
+					layout = result.layout;
+					images = result.rectangles;
+				}else{
+					// one image
+					layout = [{n: 0, x: 0, y: 0}];
+				}
 
 				// draw images
 
