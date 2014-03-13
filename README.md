@@ -1,4 +1,6 @@
-# grunt-tight-sprite  [![Build Status](https://secure.travis-ci.org/uhop/grunt-tight-sprite.png?branch=master)](http://travis-ci.org/uhop/grunt-tight-sprite) [![Dependency Status](https://david-dm.org/uhop/grunt-tight-sprite.png)](https://david-dm.org/uhop/grunt-tight-sprite) [![devDependency Status](https://david-dm.org/uhop/grunt-tight-sprite/dev-status.png)](https://david-dm.org/uhop/grunt-tight-sprite#info=devDependencies)
+# grunt-tight-sprite
+
+[![Build Status](https://secure.travis-ci.org/uhop/grunt-tight-sprite.png?branch=master)](http://travis-ci.org/uhop/grunt-tight-sprite) [![Dependency Status](https://david-dm.org/uhop/grunt-tight-sprite.png)](https://david-dm.org/uhop/grunt-tight-sprite) [![devDependency Status](https://david-dm.org/uhop/grunt-tight-sprite/dev-status.png)](https://david-dm.org/uhop/grunt-tight-sprite#info=devDependencies)
 
 > Tight 2D packing of images into a sprite with a corresponding CSS.
 
@@ -65,6 +67,8 @@ Following options are supported and documented in excrusiating details with exam
   string template to generate individual entries corresponding to original source images in a sprite's CSS file.
 - [options.templateFile](https://github.com/uhop/grunt-tight-sprite/wiki/options.templateFile) --
   alternative way to specify a template as an external file. Default: none.
+- [options.templateParams](https://github.com/uhop/grunt-tight-sprite/wiki/options.templateParams) --
+  a way to pass arbitrary parameters to a template. Default: `{}`.
 
 ### Documentation
 
@@ -75,6 +79,8 @@ Please consult [Wiki](https://github.com/uhop/grunt-tight-sprite/wiki) and
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+
+0.1.6 -- add arbitrary parameters to a template. Thanks, Vladimir Lugovsky!
 
 0.1.5 -- removed some accidental garbage.
 
