@@ -137,7 +137,8 @@ module.exports = function(grunt) {
 						h: rect.h,
 						x: pos.x,
 						y: pos.y,
-						url: url
+						url: url,
+						params: options.templateParams || {}
 					};
 				}).sort(function(a, b){
 					if(a.shortName === b.shortName){
