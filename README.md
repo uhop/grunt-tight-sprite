@@ -27,6 +27,7 @@ grunt.loadNpmTasks('grunt-tight-sprite');
 In your project's Gruntfile, add a section named `tight_sprite` to the data object passed into `grunt.initConfig()`.
 
 ```js
+var iconPath = "tests/icons/";
 grunt.initConfig({
   tight_sprite: {
     // describe my sprite #1
@@ -34,41 +35,14 @@ grunt.initConfig({
       options: {
         classPrefix: "",
         silent: true
+        hide: iconPath,
       },
-      cwd: "tests/icons",
-      src: ["*/**/*.{png,jpg,jpeg,gif}"],
-      dest: "tests/icons/sprite1.png"
+      src: [iconPath + "*/**/*.{png,jpg,jpeg,gif}"],
+      dest: iconPath + "sprite1.png"
     }
   }
 })
 ```
-
-### Options
-
-Following options are supported and documented in excrusiating details with examples:
-
-- [options.absolute](https://github.com/uhop/grunt-tight-sprite/wiki/options.absolute) --
-  indicates to use an absolute path of a generated sprite image in CSS. Default: `false`.
-- [options.background](https://github.com/uhop/grunt-tight-sprite/wiki/options.background) --
-  specifies a color to be used as a background. Default: transparent.
-- [options.classPrefix](https://github.com/uhop/grunt-tight-sprite/wiki/options.classPrefix) --
-  prefix for generated CSS class names. Default: `'sprite_'`.
-- [options.cssDest](https://github.com/uhop/grunt-tight-sprite/wiki/options.cssDest) --
-  file name for a generated CSS file. Default: the same as `dest`, but with `'.css'` extension.
-- [options.includeExt](https://github.com/uhop/grunt-tight-sprite/wiki/options.includeExt) --
-  include image file's extension in a generated CSS class name. Default: `false`.
-- [options.jpeg](https://github.com/uhop/grunt-tight-sprite/wiki/options.jpeg) --
-  object, when specified it generates JPEG, or PNG when `null`. Default: `null` (PNG).
-- [options.includePath](https://github.com/uhop/grunt-tight-sprite/wiki/options.includePath) --
-  include image file's path in a generated CSS class name. Default: `true`.
-- [options.silent](https://github.com/uhop/grunt-tight-sprite/wiki/options.silent) --
-  suppress all informational output to console. Default: `false`.
-- [options.template](https://github.com/uhop/grunt-tight-sprite/wiki/options.template) --
-  string template to generate individual entries corresponding to original source images in a sprite's CSS file.
-- [options.templateFile](https://github.com/uhop/grunt-tight-sprite/wiki/options.templateFile) --
-  alternative way to specify a template as an external file. Default: none.
-- [options.templateParams](https://github.com/uhop/grunt-tight-sprite/wiki/options.templateParams) --
-  a way to pass arbitrary parameters to a template. Default: `{}`.
 
 ### Documentation
 
@@ -80,16 +54,11 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-0.1.6 -- add arbitrary parameters to a template. Thanks, Vladimir Lugovsky!
-
-0.1.5 -- removed some accidental garbage.
-
-0.1.4 -- accurate work with layouting 0 and 1 rectangle.
-
-0.1.3 -- a bug fix.
-
-0.1.2 -- added support for skipping path from CSS class names.
-
-0.1.1 -- added support for file extensions.
-
-0.1.0 -- the initial release.
+- 0.1.7 *added `hide` option.*
+- 0.1.6 *added arbitrary parameters to a template. Thanks, Vladimir Lugovsky!*
+- 0.1.5 *removed some accidental garbage.*
+- 0.1.4 *accurate work with layouting 0 and 1 rectangle.*
+- 0.1.3 *a bug fix.*
+- 0.1.2 *added support for skipping path from CSS class names.*
+- 0.1.1 *added support for file extensions.*
+- 0.1.0 *the initial release.*
