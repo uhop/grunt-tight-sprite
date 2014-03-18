@@ -60,6 +60,13 @@ module.exports = function(grunt) {
 				});
 
 			this.files.forEach(function(file){
+				if(file.expand){
+					grunt.fatal("grunt-tight-sprite does not support 'expand' option.", 3);
+					return;
+				}
+				if(file.cwd){
+					grunt.log.error("grunt-tight-sprite: 'cwd' is deprecated, use 'options.hide' instead.");
+				}
 				var layout, images = file.src.map(function(shortName){
 					var name = file.cwd ? path.join(file.cwd, shortName) : shortName,
 						size = sizeOf(name);
