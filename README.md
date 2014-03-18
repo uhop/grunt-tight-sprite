@@ -34,8 +34,8 @@ grunt.initConfig({
     my_sprite1: {
       options: {
         classPrefix: "",
-        silent: true
-        hide: iconPath,
+        silent: true,
+        hide: iconPath
       },
       src: [iconPath + "*/**/*.{png,jpg,jpeg,gif}"],
       dest: iconPath + "sprite1.png"
@@ -54,6 +54,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 0.1.8 *fixed an example.*
 - 0.1.7 *added `hide` option.*
 - 0.1.6 *added arbitrary parameters to a template. Thanks, Vladimir Lugovsky!*
 - 0.1.5 *removed some accidental garbage.*
