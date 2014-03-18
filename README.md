@@ -41,7 +41,7 @@ grunt.initConfig({
       dest: iconPath + "sprite1.png"
     }
   }
-})
+});
 ```
 
 ### Documentation
@@ -54,12 +54,13 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 0.1.9 *added the ability to specify dot and path separators.*
 - 0.1.8 *fixed an example.*
 - 0.1.7 *added `hide` option.*
 - 0.1.6 *added arbitrary parameters to a template. Thanks, Vladimir Lugovsky!*
 - 0.1.5 *removed some accidental garbage.*
 - 0.1.4 *accurate work with layouting 0 and 1 rectangle.*
-- 0.1.3 *a bug fix.*
+- 0.1.3 *bugfix.*
 - 0.1.2 *added support for skipping path from CSS class names.*
 - 0.1.1 *added support for file extensions.*
 - 0.1.0 *the initial release.*

@@ -30,7 +30,8 @@ function makeClassName(shortName, options){
 			shortName = shortName.substr(l);
 		}
 	}
-	return shortName.replace(/\./g, "_").replace(new RegExp("\\" + path.sep, "g"), "_");
+	return shortName.replace(/\./g, options.dotSeparator).
+		replace(new RegExp("\\" + path.sep, "g"), options.pathSeparator);
 }
 
 var defaultTemplate =
@@ -50,13 +51,15 @@ module.exports = function(grunt) {
 			var done = this.async();
 
 			var options = this.options({
-					jpeg:        null,
-					classPrefix: "sprite_",
-					includePath: true,
-					includeExt:  false,
-					absolute:    false,
-					silent:      false,
-					hide:        ""
+					jpeg:          null,
+					absolute:      false,
+					hide:          "",
+					classPrefix:   "sprite_",
+					dotSeparator:  "_",
+					pathSeparator: "_",
+					includePath:   true,
+					includeExt:    false,
+					silent:        false
 				});
 
 			this.files.forEach(function(file){
