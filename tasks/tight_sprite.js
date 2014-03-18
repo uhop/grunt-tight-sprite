@@ -4,12 +4,12 @@
 var path = require("path");
 var fs   = require("fs");
 
-var sizeOf = require("image-size");
-var Canvas = require("canvas");
-var _      = require("lodash");
+var sizeOf   = require("image-size");
+var Canvas   = require("canvas");
+var template = require("lodash.template");
 
-var solver  = require("tight-sprite/palletizing");
-var getSize = require("tight-sprite/lib/utils/getSize");
+var solver   = require("tight-sprite/palletizing");
+var getSize  = require("tight-sprite/lib/utils/getSize");
 
 
 // template helpers
@@ -22,6 +22,12 @@ function makeClassName(shortName, options){
 		var ext = path.extname(shortName);
 		if(ext){
 			shortName = shortName.replace(new RegExp("\\" + ext + "$"), "");
+		}
+	}
+	if(options.hide){
+		var l = options.hide.length;
+		if(l <= shortName.length && options.hide === shortName.substr(0, l)){
+			shortName = shortName.substr(l);
 		}
 	}
 	return shortName.replace(/\./g, "_").replace(new RegExp("\\" + path.sep, "g"), "_");
@@ -49,7 +55,8 @@ module.exports = function(grunt) {
 					includePath: true,
 					includeExt:  false,
 					absolute:    false,
-					silent:      false
+					silent:      false,
+					hide:        ""
 				});
 
 			this.files.forEach(function(file){
@@ -108,11 +115,11 @@ module.exports = function(grunt) {
 
 				var tmpl;
 				if(options.template){
-					tmpl = _.template(options.template);
+					tmpl = template(options.template);
 				}else if(options.templateFile){
-					tmpl = _.template(fs.readFileSync(options.templateFile, {options: "utf8"}));
+					tmpl = template(fs.readFileSync(options.templateFile, {options: "utf8"}));
 				}else{
-					tmpl = _.template(defaultTemplate);
+					tmpl = template(defaultTemplate);
 				}
 
 				var inFlight = 2;
