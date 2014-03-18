@@ -8,14 +8,17 @@
 
 "use strict";
 
+var iconPath = "tests/icons/";
+
 module.exports = function(grunt) {
 	grunt.initConfig({
 		tight_sprite: {
 			sprite1: {
-				options: {},
-				cwd: "tests/icons",
-				src: ["*/**/*.{png,jpg,jpeg,gif}"],
-				dest: "tests/icons/sprite1"
+				options: {
+					hide: iconPath
+				},
+				src:  [iconPath + "*/**/*.{png,jpg,jpeg,gif}"],
+				dest: iconPath + "sprite1.png"
 			}
 		}
 	});
