@@ -9,7 +9,6 @@ var Canvas   = require("canvas");
 var template = require("lodash.template");
 
 var solver   = require("tight-sprite/palletizing");
-var getSize  = require("tight-sprite/lib/utils/getSize");
 
 
 // template helpers
@@ -70,7 +69,7 @@ module.exports = function(grunt) {
 				if(file.cwd){
 					grunt.log.error("grunt-tight-sprite: 'cwd' is deprecated, use 'options.hide' instead.");
 				}
-				var layout, images = file.src.map(function(shortName){
+				var layout, size, images = file.src.map(function(shortName){
 						var name = file.cwd ? path.join(file.cwd, shortName) : shortName,
 							size = sizeOf(name);
 						return {
@@ -98,15 +97,16 @@ module.exports = function(grunt) {
 					var result = solver(images, {silent: options.silent});
 					layout = result.layout;
 					images = result.rectangles;
+					size   = result;	// only using w and h
 				}else{
 					// one image
 					layout = [{n: 0, x: 0, y: 0}];
+					size   = images[0];	// only using w and h
 				}
 
 				// draw images
 
-				var size = getSize(images, layout),
-					canvas = new Canvas(size.w, size.h),
+				var canvas = new Canvas(size.w, size.h),
 					ctx = canvas.getContext("2d");
 
 				if(options.background){
