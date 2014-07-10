@@ -33,8 +33,8 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "image-size": "~0.1.16",
-    "canvas": "~1.1.2",
+    "canvas": "^1.1.5",
+    "image-size": "^0.3.0",
     "lodash.template": "~2.4.1",
     "tight-sprite": ">=0.1"
   },
