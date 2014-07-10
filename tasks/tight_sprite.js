@@ -71,17 +71,22 @@ module.exports = function(grunt) {
 					grunt.log.error("grunt-tight-sprite: 'cwd' is deprecated, use 'options.hide' instead.");
 				}
 				var layout, images = file.src.map(function(shortName){
-					var name = file.cwd ? path.join(file.cwd, shortName) : shortName,
-						size = sizeOf(name);
-					return {
-						name: name,
-						shortName: shortName,
-						className: options.classPrefix + makeClassName(shortName, options),
-						extension: path.extname(shortName),
-						w: size.width,
-						h: size.height
-					};
-				});
+						var name = file.cwd ? path.join(file.cwd, shortName) : shortName,
+							size = sizeOf(name);
+						return {
+							name: name,
+							shortName: shortName,
+							className: options.classPrefix + makeClassName(shortName, options),
+							extension: path.extname(shortName),
+							w: size.width,
+							h: size.height
+						};
+					}).sort(function(a, b){
+						if(a.name === b.name){
+							return 0;
+						}
+						return a.name < b.name ? -1 : 1;
+					});
 
 				if(images.length === 0){
 					grunt.fatal("task: tight_sprite: " + this.target + " has 0 source files, exiting.");
@@ -159,7 +164,7 @@ module.exports = function(grunt) {
 					};
 				}).sort(function(a, b){
 					if(a.shortName === b.shortName){
-						return -1;
+						return 0;
 					}
 					return a.shortName < b.shortName ? -1 : 1;
 				}).forEach(function(rect){
