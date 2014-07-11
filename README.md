@@ -54,6 +54,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 0.2.0 *stability fixes, more flexible template options.*
 - 0.1.9 *added the ability to specify dot and path separators.*
 - 0.1.8 *fixed an example.*
 - 0.1.7 *added `hide` option.*
