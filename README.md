@@ -1,6 +1,10 @@
 # grunt-tight-sprite
 
-[![Build Status](https://secure.travis-ci.org/uhop/grunt-tight-sprite.png?branch=master)](http://travis-ci.org/uhop/grunt-tight-sprite) [![Dependency Status](https://david-dm.org/uhop/grunt-tight-sprite.png)](https://david-dm.org/uhop/grunt-tight-sprite) [![devDependency Status](https://david-dm.org/uhop/grunt-tight-sprite/dev-status.png)](https://david-dm.org/uhop/grunt-tight-sprite#info=devDependencies)
+[![Build status][travis-image]][travis-url]
+[![Dependencies][deps-image]][deps-url]
+[![devDependencies][dev-deps-image]][dev-deps-url]
+[![NPM version][npm-image]][npm-url]
+
 
 > Tight 2D packing of images into a sprite with a corresponding CSS.
 
@@ -65,3 +69,12 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 - 0.1.2 *added support for skipping path from CSS class names.*
 - 0.1.1 *added support for file extensions.*
 - 0.1.0 *the initial release.*
+
+[npm-image]:      https://img.shields.io/npm/v/grunt-tight-sprite.svg
+[npm-url]:        https://npmjs.org/package/grunt-tight-sprite
+[deps-image]:     https://img.shields.io/david/uhop/grunt-tight-sprite.svg
+[deps-url]:       https://david-dm.org/uhop/grunt-tight-sprite
+[dev-deps-image]: https://img.shields.io/david/dev/uhop/grunt-tight-sprite.svg
+[dev-deps-url]:   https://david-dm.org/uhop/grunt-tight-sprite#info=devDependencies
+[travis-image]:   https://img.shields.io/travis/uhop/grunt-tight-sprite.svg
+[travis-url]:     https://travis-ci.org/uhop/grunt-tight-sprite
