@@ -58,7 +58,8 @@ module.exports = function(grunt) {
 					includePath:   true,
 					includeExt:    false,
 					silent:        false,
-					fragment:      true
+					fragment:      true,
+					padding:	   0
 				});
 
 			this.files.forEach(function(file){
@@ -72,13 +73,14 @@ module.exports = function(grunt) {
 				var layout, size, images = file.src.map(function(shortName){
 						var name = file.cwd ? path.join(file.cwd, shortName) : shortName,
 							size = sizeOf(name);
+
 						return {
 							name: name,
 							shortName: shortName,
 							className: options.classPrefix + makeClassName(shortName, options),
 							extension: path.extname(shortName),
-							w: size.width,
-							h: size.height
+							w: size.width + options.padding,
+							h: size.height + options.padding
 						};
 					}).sort(function(a, b){
 						if(a.name === b.name){
@@ -103,6 +105,9 @@ module.exports = function(grunt) {
 					layout = [{n: 0, x: 0, y: 0}];
 					size   = images[0];	// only using w and h
 				}
+
+				size.w += options.padding;
+				size.h += options.padding;
 
 				// prepare rectangles
 
@@ -129,10 +134,10 @@ module.exports = function(grunt) {
 								shortName: rect.shortName,
 								className: rect.className,
 								extension: rect.extension,
-								w: rect.w,
-								h: rect.h,
-								x: pos.x,
-								y: pos.y,
+								w: rect.w - options.padding,
+								h: rect.h - options.padding,
+								x: pos.x + options.padding,
+								y: pos.y + options.padding,
 								url: url,
 								size: size,
 								params: options.templateParams || {}
