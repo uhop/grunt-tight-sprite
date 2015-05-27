@@ -59,8 +59,11 @@ module.exports = function(grunt) {
 					includeExt:    false,
 					silent:        false,
 					fragment:      true,
-					padding:	   0
+					padding:       0
 				});
+			if(isNaN(options.padding) || options.padding < 0){
+				options.padding = 0;
+			}
 
 			this.files.forEach(function(file){
 				if(file.expand){
@@ -79,7 +82,7 @@ module.exports = function(grunt) {
 							shortName: shortName,
 							className: options.classPrefix + makeClassName(shortName, options),
 							extension: path.extname(shortName),
-							w: size.width + options.padding,
+							w: size.width  + options.padding,
 							h: size.height + options.padding
 						};
 					}).sort(function(a, b){
@@ -136,8 +139,8 @@ module.exports = function(grunt) {
 								extension: rect.extension,
 								w: rect.w - options.padding,
 								h: rect.h - options.padding,
-								x: pos.x + options.padding,
-								y: pos.y + options.padding,
+								x: pos.x  + options.padding,
+								y: pos.y  + options.padding,
 								url: url,
 								size: size,
 								params: options.templateParams || {}
