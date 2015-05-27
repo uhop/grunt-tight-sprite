@@ -35,8 +35,8 @@
   "dependencies": {
     "canvas": "^1.1.5",
     "image-size": "^0.3.0",
-    "lodash.template": "~2.4.1",
-    "tight-sprite": ">=0.1"
+    "lodash.template": "~3.6.1",
+    "tight-sprite": ">=0.1.5"
   },
   "devDependencies": {
     "grunt": "~0.4.1"
