@@ -54,10 +54,12 @@ Please consult [Wiki](https://github.com/uhop/grunt-tight-sprite/wiki) and
 [FAQ](https://github.com/uhop/grunt-tight-sprite/wiki/FAQ).
 
 ## Contributing
+
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
 
+- 0.2.1 *added the ability to pad images.*
 - 0.2.0 *stability fixes, more flexible template options.*
 - 0.1.9 *added the ability to specify dot and path separators.*
 - 0.1.8 *fixed an example.*
