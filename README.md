@@ -59,6 +59,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 0.2.2 *refreshed dependencies.*
 - 0.2.1 *added the ability to pad images.*
 - 0.2.0 *stability fixes, more flexible template options.*
 - 0.1.9 *added the ability to specify dot and path separators.*

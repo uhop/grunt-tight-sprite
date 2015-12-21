@@ -1,7 +1,7 @@
 {
   "name": "grunt-tight-sprite",
   "description": "Tight 2D packing of images into a sprite with a corresponding CSS.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "homepage": "https://github.com/uhop/grunt-tight-sprite/wiki",
   "author": {
     "name": "Eugene Lazutkin",
@@ -16,12 +16,7 @@
   "bugs": {
     "url": "https://github.com/uhop/grunt-tight-sprite/issues"
   },
-  "licenses": [
-    {
-      "type": "New BSD",
-      "url": "http://github.com/uhop/grunt-tight-sprite/blob/master/LICENSE"
-    }
-  ],
+  "license": "BSD-3-Clause",
   "main": "Gruntfile.js",
   "directories": {
     "test": "tests"
@@ -33,9 +28,9 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "canvas": "^1.1.5",
-    "image-size": "^0.3.0",
-    "lodash.template": "~3.6.1",
+    "canvas": "^1.3.5",
+    "image-size": "^0.4.0",
+    "lodash.template": "~3.6.2",
     "tight-sprite": ">=0.1.5"
   },
   "devDependencies": {
