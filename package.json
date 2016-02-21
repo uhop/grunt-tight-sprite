@@ -1,7 +1,7 @@
 {
   "name": "grunt-tight-sprite",
   "description": "Tight 2D packing of images into a sprite with a corresponding CSS.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/uhop/grunt-tight-sprite/wiki",
   "author": {
     "name": "Eugene Lazutkin",
@@ -33,11 +33,8 @@
     "lodash.template": "~3.6.2",
     "tight-sprite": ">=0.1.5"
   },
-  "devDependencies": {
-    "grunt": "~0.4.1"
-  },
   "peerDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": ">=0.4.0"
   },
   "keywords": [
     "gruntplugin",

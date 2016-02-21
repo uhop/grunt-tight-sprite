@@ -59,6 +59,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 0.2.3 *new dependencies on Grunt to include its version of 1.0.0.*
 - 0.2.2 *refreshed dependencies.*
 - 0.2.1 *added the ability to pad images.*
 - 0.2.0 *stability fixes, more flexible template options.*
@@ -72,6 +73,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 - 0.1.2 *added support for skipping path from CSS class names.*
 - 0.1.1 *added support for file extensions.*
 - 0.1.0 *the initial release.*
+
+## License
+
+BSD
 
 [npm-image]:      https://img.shields.io/npm/v/grunt-tight-sprite.svg
 [npm-url]:        https://npmjs.org/package/grunt-tight-sprite
