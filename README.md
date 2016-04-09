@@ -59,6 +59,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 0.2.4 *refreshed dependencies.*
 - 0.2.3 *new dependencies on Grunt to include its version of 1.0.0.*
 - 0.2.2 *refreshed dependencies.*
 - 0.2.1 *added the ability to pad images.*
