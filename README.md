@@ -59,6 +59,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 0.2.5 *refreshed dependencies.*
 - 0.2.4 *refreshed dependencies.*
 - 0.2.3 *new dependencies on Grunt to include its version of 1.0.0.*
 - 0.2.2 *refreshed dependencies.*
@@ -84,6 +85,6 @@ BSD
 [deps-image]:     https://img.shields.io/david/uhop/grunt-tight-sprite.svg
 [deps-url]:       https://david-dm.org/uhop/grunt-tight-sprite
 [dev-deps-image]: https://img.shields.io/david/dev/uhop/grunt-tight-sprite.svg
-[dev-deps-url]:   https://david-dm.org/uhop/grunt-tight-sprite#info=devDependencies
+[dev-deps-url]:   https://david-dm.org/uhop/grunt-tight-sprite?type=dev
 [travis-image]:   https://img.shields.io/travis/uhop/grunt-tight-sprite.svg
 [travis-url]:     https://travis-ci.org/uhop/grunt-tight-sprite
