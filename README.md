@@ -61,6 +61,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 0.2.7 *refreshed dependencies (Canvas 2!). Thx [Max Motovilov](https://github.com/MaxMotovilov)!*
 - 0.2.6 *refreshed dependencies.*
 - 0.2.5 *refreshed dependencies.*
 - 0.2.4 *refreshed dependencies.*
