@@ -1,11 +1,11 @@
 # grunt-tight-sprite
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/uhop/grunt-tight-sprite.svg)](https://greenkeeper.io/)
-
 [![Build status][travis-image]][travis-url]
+[![NPM version][npm-image]][npm-url]
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/uhop/grunt-tight-sprite.svg)](https://greenkeeper.io/)
 [![Dependencies][deps-image]][deps-url]
 [![devDependencies][dev-deps-image]][dev-deps-url]
-[![NPM version][npm-image]][npm-url]
 
 
 > Tight 2D packing of images into a sprite with a corresponding CSS.
