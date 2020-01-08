@@ -54,10 +54,17 @@ Please consult [Wiki](https://github.com/uhop/grunt-tight-sprite/wiki) and
 [FAQ](https://github.com/uhop/grunt-tight-sprite/wiki/FAQ).
 
 ## Contributing
+
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
 
+- 0.2.6 *refreshed dependencies.*
+- 0.2.5 *refreshed dependencies.*
+- 0.2.4 *refreshed dependencies.*
+- 0.2.3 *new dependencies on Grunt to include its version of 1.0.0.*
+- 0.2.2 *refreshed dependencies.*
+- 0.2.1 *added the ability to pad images.*
 - 0.2.0 *stability fixes, more flexible template options.*
 - 0.1.9 *added the ability to specify dot and path separators.*
 - 0.1.8 *fixed an example.*
@@ -70,11 +77,15 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 - 0.1.1 *added support for file extensions.*
 - 0.1.0 *the initial release.*
 
+## License
+
+BSD
+
 [npm-image]:      https://img.shields.io/npm/v/grunt-tight-sprite.svg
 [npm-url]:        https://npmjs.org/package/grunt-tight-sprite
 [deps-image]:     https://img.shields.io/david/uhop/grunt-tight-sprite.svg
 [deps-url]:       https://david-dm.org/uhop/grunt-tight-sprite
 [dev-deps-image]: https://img.shields.io/david/dev/uhop/grunt-tight-sprite.svg
-[dev-deps-url]:   https://david-dm.org/uhop/grunt-tight-sprite#info=devDependencies
+[dev-deps-url]:   https://david-dm.org/uhop/grunt-tight-sprite?type=dev
 [travis-image]:   https://img.shields.io/travis/uhop/grunt-tight-sprite.svg
 [travis-url]:     https://travis-ci.org/uhop/grunt-tight-sprite

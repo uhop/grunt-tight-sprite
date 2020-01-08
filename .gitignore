@@ -2,3 +2,6 @@ node_modules
 npm-debug.log
 tmp
 *.sublime-*
+
+tests/icons/sprite1.css
+tests/icons/sprite1.png
