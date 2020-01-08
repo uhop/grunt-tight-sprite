@@ -3,24 +3,27 @@ sudo: true
 language: node_js
 
 node_js:
-  - "6"
-  - "7"
   - "8"
-  - "9"
+  - "10"
+  - "12"
+  - "13"
 
 env:
-  - CXX=g++-4.8
+  - CXX=g++-7
 
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
-
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
+      - build-essential
+      - libcairo2-dev
+      - libpango1.0-dev
+      - libjpeg-dev
+      - libgif-dev
+      - librsvg2-dev
+      - gcc-7
+      - g++-7
 
 before_script:
   - npm install -g grunt-cli

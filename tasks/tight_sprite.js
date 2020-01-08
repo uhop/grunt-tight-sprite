@@ -154,7 +154,7 @@ module.exports = function(grunt) {
 
 				// create a sprite image
 
-				var canvas = new Canvas(size.w, size.h),
+				var canvas = Canvas.createCanvas(size.w, size.h),
 					ctx = canvas.getContext("2d");
 
 				if(options.background){
