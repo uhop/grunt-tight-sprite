@@ -1,9 +1,11 @@
 # grunt-tight-sprite
 
 [![Build status][travis-image]][travis-url]
+[![NPM version][npm-image]][npm-url]
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/uhop/grunt-tight-sprite.svg)](https://greenkeeper.io/)
 [![Dependencies][deps-image]][deps-url]
 [![devDependencies][dev-deps-image]][dev-deps-url]
-[![NPM version][npm-image]][npm-url]
 
 
 > Tight 2D packing of images into a sprite with a corresponding CSS.
@@ -59,6 +61,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 0.2.7 *refreshed dependencies (Canvas 2!). Thx [Max Motovilov](https://github.com/MaxMotovilov)!*
 - 0.2.6 *refreshed dependencies.*
 - 0.2.5 *refreshed dependencies.*
 - 0.2.4 *refreshed dependencies.*
