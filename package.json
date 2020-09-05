@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "canvas": "^2.6.1",
-    "image-size": "^0.8.3",
+    "image-size": "^0.9.1",
     "lodash.template": "^4.5.0",
     "tight-sprite": "^0.1.5"
   },
